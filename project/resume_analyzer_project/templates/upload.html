@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block title %}Upload resume{% endblock %}
+{% block content %}
+<div class="row justify-content-center"><div class="col-lg-7">
+<h1 class="h2">Upload your resume</h1><p class="text-secondary">Upload a text-based PDF or a DOCX document. Maximum size: 5 MB.</p>
+<div class="card border-0 shadow-sm p-4">
+<form method="post" enctype="multipart/form-data">
+  <label for="resume" class="form-label fw-semibold">Resume file</label>
+  <input id="resume" name="resume" type="file" class="form-control" accept=".pdf,.docx" required>
+  <div class="form-text mb-3">Scanned PDFs without selectable text are not supported in this version.</div>
+  <button class="btn btn-primary">Upload and analyze</button>
+</form>
+</div>
+<div class="alert alert-info mt-3 small">Privacy note: files and extracted text are stored locally by this demo. Use sample data for public demonstrations and delete test resumes when finished.</div>
+</div></div>
+{% endblock %}

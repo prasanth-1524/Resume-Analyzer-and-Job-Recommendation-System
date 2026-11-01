@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Dashboard{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-center gap-3 mb-4">
+  <div><p class="eyebrow mb-1">YOUR WORKSPACE</p><h1 class="h2 mb-0">Hello, {{ session.get('user_name') }}</h1></div>
+  <a class="btn btn-primary" href="{{ url_for('upload_resume') }}">+ Upload resume</a>
+</div>
+<div class="row g-3 mb-4">
+  <div class="col-md-4"><div class="stat-card"><span>Resumes uploaded</span><strong>{{ resumes|length }}</strong></div></div>
+  <div class="col-md-4"><div class="stat-card"><span>Saved jobs</span><strong>{{ saved|length }}</strong></div></div>
+  <div class="col-md-4"><div class="stat-card"><span>Recent analyses</span><strong>{{ analyses|length }}</strong></div></div>
+</div>
+<h2 class="h4 mb-3">Your resumes</h2>
+{% if resumes %}
+<div class="list-group mb-5">
+{% for resume in resumes %}
+  <a class="list-group-item list-group-item-action d-flex justify-content-between align-items-center" href="{{ url_for('resume_detail', resume_id=resume.resume_id) }}">
+    <span><strong>{{ resume.original_filename }}</strong><span class="d-block small text-muted">{{ resume.uploaded_at[:10] }}</span></span><span>Analyze →</span>
+  </a>
+{% endfor %}
+</div>
+{% else %}<div class="empty-state mb-5">No resume uploaded yet. Upload one to view detected skills and job matches.</div>{% endif %}
+<h2 class="h4 mb-3">Saved jobs</h2>
+{% if saved %}
+<div class="row g-3 mb-5">{% for job in saved %}
+<div class="col-md-6"><div class="card p-3 h-100"><h5>{{ job.title }}</h5><p class="text-muted">{{ job.company }} · {{ job.location }}</p><div class="d-flex gap-2 mt-auto"><a class="btn btn-outline-primary btn-sm" href="{{ url_for('job_detail', job_id=job.job_id) }}">View</a><form method="post" action="{{ url_for('unsave_job', job_id=job.job_id) }}"><button class="btn btn-outline-danger btn-sm">Remove</button></form></div></div></div>
+{% endfor %}</div>
+{% else %}<p class="text-muted mb-5">You have not saved any jobs.</p>{% endif %}
+<h2 class="h4 mb-3">Analysis history</h2>
+{% if analyses %}
+<div class="table-responsive"><table class="table align-middle"><thead><tr><th>Resume</th><th>Job</th><th>Match</th><th>Date</th></tr></thead><tbody>
+{% for item in analyses %}<tr><td>{{ item.original_filename }}</td><td>{{ item.job_title }}<div class="small text-muted">{{ item.company }}</div></td><td><span class="score-pill">{{ item.match_score }}%</span></td><td>{{ item.created_at[:10] }}</td></tr>{% endfor %}
+</tbody></table></div>
+{% else %}<p class="text-muted">Saved analyses will appear here.</p>{% endif %}
+{% endblock %}

@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}Browse jobs{% endblock %}
+{% block content %}
+<div class="d-flex flex-wrap justify-content-between align-items-end gap-3 mb-4">
+<div><p class="eyebrow mb-1">OPPORTUNITY EXPLORER</p><h1 class="h2 mb-0">Browse sample jobs</h1></div>
+<form method="get" class="d-flex gap-2"><input class="form-control" name="q" value="{{ q }}" placeholder="Search title, company, skills"><button class="btn btn-primary">Search</button></form>
+</div>
+<div class="row g-3">
+{% for job in jobs %}
+<div class="col-md-6"><div class="card job-card p-4 h-100"><div class="d-flex justify-content-between gap-2"><div><div class="small text-primary fw-semibold">{{ job.company }}</div><h4 class="h5 mt-2">{{ job.title }}</h4></div><span class="badge text-bg-light align-self-start">{{ job.location }}</span></div><p class="text-secondary clamp">{{ job.description }}</p><a class="btn btn-outline-primary mt-auto align-self-start" href="{{ url_for('job_detail', job_id=job.job_id) }}">View details</a></div></div>
+{% else %}<div class="col-12"><div class="empty-state">No jobs matched your search.</div></div>{% endfor %}
+</div>
+{% endblock %}

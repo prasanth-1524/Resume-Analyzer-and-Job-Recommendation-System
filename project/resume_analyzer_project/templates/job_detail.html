@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block title %}{{ job.title }}{% endblock %}
+{% block content %}
+<a href="{{ url_for('jobs') }}" class="small">← Back to jobs</a>
+<div class="row g-4 mt-1">
+<div class="col-lg-7"><div class="card border-0 shadow-sm p-4">
+<div class="small text-primary fw-semibold">{{ job.company }}</div><h1 class="h2 mt-2">{{ job.title }}</h1><p class="text-muted">{{ job.location }}</p>
+<h2 class="h5 mt-4">Role description</h2><p>{{ job.description }}</p>
+<div class="d-flex gap-2 flex-wrap">
+{% if session.get('user_id') %}
+  {% if saved %}<span class="badge text-bg-success align-self-center">Saved</span>{% else %}<form method="post" action="{{ url_for('save_job', job_id=job.job_id) }}"><button class="btn btn-primary">Save job</button></form>{% endif %}
+{% else %}<a class="btn btn-primary" href="{{ url_for('login') }}">Log in to save</a>{% endif %}
+</div></div></div>
+<div class="col-lg-5">
+{% if report %}
+<div class="card border-0 shadow-sm p-4">
+<p class="eyebrow mb-1">YOUR LATEST RESUME</p><h2 class="h4">Match overview</h2>
+<div class="score-big">{{ report.match_score }}<span>%</span></div>
+<div class="progress mb-3"><div class="progress-bar" style="width:{{ report.match_score }}%"></div></div>
+<p class="small text-muted">Heuristic similarity score, not a hiring probability.</p>
+<h3 class="h6">Matched skills</h3>
+{% for skill in report.matched_skills %}<span class="skill-chip">{{ skill }}</span>{% else %}<p class="small text-muted">No matching skills detected.</p>{% endfor %}
+<h3 class="h6 mt-3">Skills to consider learning</h3>
+{% for skill in report.missing_skills %}<span class="skill-chip missing-chip">{{ skill }}</span>{% else %}<p class="small text-success">No missing skills detected by the current vocabulary.</p>{% endfor %}
+</div>
+{% elif session.get('user_id') %}
+<div class="empty-state">Upload a resume to see your match against this role.</div><a href="{{ url_for('upload_resume') }}" class="btn btn-outline-primary mt-2">Upload resume</a>
+{% else %}
+<div class="empty-state">Log in and upload a resume to see a personalized match report.</div><a href="{{ url_for('login') }}" class="btn btn-outline-primary mt-2">Log in</a>
+{% endif %}
+</div></div>
+{% endblock %}

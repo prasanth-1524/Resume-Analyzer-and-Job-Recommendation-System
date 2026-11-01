@@ -1,0 +1,29 @@
+:root { --ink: #17233b; --primary: #4259d6; --muted: #6b7280; --surface: #f6f8fc; }
+body { background: #fbfcff; color: var(--ink); min-height: 100vh; }
+.nav-custom { background: #17233b; }
+.navbar-brand { letter-spacing: -.4px; }
+.hero { background: linear-gradient(120deg, #eef2ff 0%, #f4f8ff 58%, #edf9f7 100%); border: 1px solid #e6ebfa; }
+.eyebrow { color: #4259d6; font-size: .72rem; font-weight: 800; letter-spacing: 1.4px; }
+.btn-primary { background: var(--primary); border-color: var(--primary); }
+.btn-primary:hover { background: #3348be; border-color: #3348be; }
+.feature-panel { background: white; border: 1px solid #e5e9f4; border-radius: 18px; padding: 24px; box-shadow: 0 16px 36px #17233b0b; }
+.progress { height: 8px; background: #e9edf8; }
+.progress-bar { background: #4259d6; }
+.skill-chip { display: inline-block; background: #edf1ff; color: #3446a6; border-radius: 999px; padding: 5px 10px; font-size: .78rem; margin: 3px 3px 3px 0; }
+.missing-chip { background: #fff3e9; color: #9b4c13; }
+.step-num { color: #4259d6; font-weight: 800; font-size: .8rem; }
+.card { border-radius: 16px; }
+.job-card { border: 1px solid #edf0f6; box-shadow: 0 8px 24px #17233b08; transition: transform .15s ease, box-shadow .15s ease; }
+.job-card:hover { transform: translateY(-2px); box-shadow: 0 12px 30px #17233b12; }
+.auth-card { max-width: 460px; border-radius: 18px; }
+.stat-card { background: white; border: 1px solid #edf0f6; border-radius: 16px; padding: 20px; }
+.stat-card span { display: block; color: var(--muted); font-size: .9rem; }
+.stat-card strong { display: block; font-size: 2rem; margin-top: 4px; }
+.empty-state { border: 1px dashed #cfd6e6; border-radius: 14px; padding: 28px; color: var(--muted); background: #fff; }
+.score-pill { display: inline-block; background: #e9f8f0; color: #166534; padding: 5px 10px; border-radius: 999px; font-weight: 700; }
+.score-circle { display: grid; place-items: center; border-radius: 50%; width: 58px; height: 58px; flex-shrink: 0; background: #edf1ff; color: #3446a6; font-weight: 800; }
+.score-big { font-size: 3rem; font-weight: 800; letter-spacing: -2px; }
+.score-big span { font-size: 1.3rem; margin-left: 2px; }
+.clamp { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+footer { border-top: 1px solid #edf0f6; margin-top: 50px; }
+@media (max-width: 576px) { .display-5 { font-size: 2.3rem; } .hero .btn { margin-bottom: 8px; } }

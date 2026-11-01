@@ -1,0 +1,20 @@
+## AI-Powered Document RAG Assistant
+## & "C:\Users\DELL\OneDrive\Desktop\project\.venv\Scripts\python.exe" app.py
+The AI-Powered Document RAG Assistant is an intelligent question-answering system that enables users to interact with their documents using natural language. The system uses Retrieval-Augmented Generation (RAG) to combine semantic document retrieval with large language model-based response generation.
+
+Users can upload documents such as PDF, TXT, and Markdown files. During document ingestion, the system extracts textual content, divides the content into smaller overlapping chunks, generates vector embeddings for each chunk, and stores the embeddings in a vector database. When a user asks a question, the question is converted into an embedding and compared with the stored document embeddings to identify the most relevant sections.
+
+The retrieved sections are then provided as contextual information to a large language model. The model generates an answer based on the retrieved context rather than relying solely on its pretrained knowledge. The application also provides document and page-level source information so users can identify where the answer originated.
+
+The system is implemented using Python, FastAPI, Sentence Transformers, ChromaDB, PyPDF, and an LLM API. The architecture can be extended with authentication, OCR, hybrid retrieval, reranking, document access control, conversation history, monitoring, and cloud storage.
+
+The primary objective of the project is to provide an efficient, scalable, and context-aware interface for querying large collections of documents while reducing unsupported or hallucinated responses.
+
+### AI-Powered Document RAG Assistant
+
+* Developed a Retrieval-Augmented Generation application for question-answering over user-uploaded PDF, TXT, and Markdown documents.
+* Implemented document ingestion, text extraction, overlapping chunk generation, semantic embeddings, and persistent vector storage using Python, Sentence Transformers, and ChromaDB.
+* Built a FastAPI backend for document indexing, semantic retrieval, document management, and AI-powered question answering.
+* Integrated an LLM to generate context-grounded responses from retrieved document passages and return source/page references.
+* Designed a lightweight browser interface for document upload and natural-language querying.
+* Applied prompt constraints to reduce hallucinations and ensure responses remain grounded in retrieved document context.

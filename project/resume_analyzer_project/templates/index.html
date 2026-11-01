@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% block title %}ResumeMatch | Resume Analyzer{% endblock %}
+{% block content %}
+<section class="hero p-4 p-md-5 rounded-4 mb-5">
+  <div class="row align-items-center g-4">
+    <div class="col-lg-7">
+      <span class="eyebrow">CAREER TOOLKIT FOR STUDENTS</span>
+      <h1 class="display-5 fw-bold mt-2">Make your resume work harder.</h1>
+      <p class="lead text-secondary">Understand your skills, discover relevant sample jobs, and identify what to learn next.</p>
+      <a class="btn btn-primary btn-lg me-2" href="{{ url_for('upload_resume') if session.get('user_id') else url_for('register') }}">Analyze my resume</a>
+      <a class="btn btn-outline-dark btn-lg" href="{{ url_for('jobs') }}">Explore jobs</a>
+    </div>
+    <div class="col-lg-5"><div class="feature-panel">
+      <div class="d-flex justify-content-between"><span>Resume match</span><strong>82%</strong></div>
+      <div class="progress my-2"><div class="progress-bar" style="width:82%"></div></div>
+      <div class="skill-chip">Python</div><div class="skill-chip">SQL</div><div class="skill-chip">Flask</div>
+      <p class="small text-muted mt-3 mb-0">Illustrative preview only</p>
+    </div></div>
+  </div>
+</section>
+<div class="row g-3 mb-5">
+  {% for title, desc, num in [
+    ('Upload','Read PDF and DOCX resumes','01'),
+    ('Analyze','Extract skills and compare text','02'),
+    ('Improve','See matched and missing skills','03')
+  ] %}
+  <div class="col-md-4"><div class="card h-100 border-0 shadow-sm p-3"><span class="step-num">{{ num }}</span><h4 class="mt-2">{{ title }}</h4><p class="text-secondary mb-0">{{ desc }}</p></div></div>
+  {% endfor %}
+</div>
+<div class="d-flex justify-content-between align-items-end mb-3"><div><h2 class="h3 mb-1">Sample opportunities</h2><p class="text-secondary mb-0">Demo listings included with the project.</p></div><a href="{{ url_for('jobs') }}">View all →</a></div>
+<div class="row g-3">
+{% for job in jobs %}
+  <div class="col-md-4"><div class="card job-card h-100 p-3"><div class="small text-primary fw-semibold">{{ job.company }}</div><h5 class="mt-2">{{ job.title }}</h5><p class="text-muted small">{{ job.location }}</p><a class="btn btn-outline-primary mt-auto" href="{{ url_for('job_detail', job_id=job.job_id) }}">View role</a></div></div>
+{% endfor %}
+</div>
+{% endblock %}
