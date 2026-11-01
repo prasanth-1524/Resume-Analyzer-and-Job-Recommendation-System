@@ -1,8 +1,0 @@
-{% extends "base.html" %}{% block title %}CipherVault{% endblock %}{% block content %}
-<section class="hero"><p class="eyebrow">PRIVATE STORAGE · CONTROLLED SHARING</p><h1>Your files, encrypted by design.</h1>
-<p>Keep files in a private vault, download them after login, and share them using time-limited links.</p>
-<a class="button" href="{{ url_for('register') }}">Get started</a> <a class="button secondary" href="{{ url_for('login') }}">Log in</a></section>
-<section class="grid"><article><h3>🔒 Encryption at rest</h3><p>File contents are encrypted before they are written to disk.</p></article>
-<article><h3>👤 Private vault</h3><p>Authenticated users can access only their own private files.</p></article>
-<article><h3>🔗 Expiring links</h3><p>Random share links stop working after their expiry time.</p></article></section>
-<p class="notice">Educational prototype only. Review the security notes before using sensitive files.</p>{% endblock %}

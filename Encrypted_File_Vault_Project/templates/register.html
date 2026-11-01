@@ -1,4 +1,0 @@
-{% extends "base.html" %}{% block title %}Register{% endblock %}{% block content %}
-<section class="panel narrow"><h1>Create account</h1><form method="post"><label>Username</label><input name="username" minlength="3" maxlength="40" required autocomplete="username">
-<label>Password (minimum 10 characters)</label><input type="password" name="password" minlength="10" required autocomplete="new-password"><button class="button full">Register</button></form>
-<p>Already registered? <a href="{{ url_for('login') }}">Log in</a></p></section>{% endblock %}

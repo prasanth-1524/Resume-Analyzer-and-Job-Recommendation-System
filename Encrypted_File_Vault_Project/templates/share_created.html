@@ -1,5 +1,0 @@
-{% extends "base.html" %}{% block title %}Share link{% endblock %}{% block content %}
-<section class="panel narrow"><h1>Share link created</h1><p>Expires at <strong>{{ expires }}</strong> (UTC).</p>
-<label for="shareurl">Copy and send this link</label><input id="shareurl" value="{{ share_url }}" readonly onclick="this.select()">
-<button class="button full" onclick="navigator.clipboard.writeText(document.getElementById('shareurl').value)">Copy link</button>
-<p class="muted">Anyone with this link can download the file until it expires. Treat the URL like a password.</p><a href="{{ url_for('vault') }}">← Back to vault</a></section>{% endblock %}
